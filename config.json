@@ -1,0 +1,4 @@
+{
+    "working_hours": ["09:00", "19:00"],
+    "max_commits": 10
+}
