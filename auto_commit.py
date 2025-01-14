@@ -88,7 +88,8 @@ def update_counter():
 
 def make_commit(repo, counter_before, counter_after):
     try:
-        repo.git.add(COUNTER_FILE)
+        # Add all tracked files, including logs and counter
+        repo.git.add(COUNTER_FILE, LOG_FILE, ERROR_LOG_FILE)
         commit_message = f"Updated counter from {counter_before} to {counter_after}"
         repo.git.commit(m=commit_message)
         return commit_message
@@ -125,8 +126,10 @@ def main():
         # Repository Setup
         repo = Repo(REPO_PATH)
         if repo.is_dirty(untracked_files=True):
-            error_logger.error("Repository has untracked or dirty files.")
-            return
+            # Automatically add and commit untracked files (logs)
+            repo.git.add(all=True)
+            repo.git.commit(m="Auto-commit untracked files")
+            repo.git.push()
 
         # Process Commits
         for i, commit_time in enumerate(commit_times):
