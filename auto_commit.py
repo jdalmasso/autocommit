@@ -4,6 +4,7 @@ import json
 from datetime import datetime, timedelta
 from git import Repo
 import pytz
+import logging
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -17,7 +18,20 @@ if not REPO_PATH:
 # Constants
 COUNTER_FILE = os.path.join(REPO_PATH, "counter.txt")
 COMMIT_TIMES_FILE = os.path.join(REPO_PATH, "commit_times.json")
+LOG_FILE = os.path.join(REPO_PATH, "commit_log.txt")
+ERROR_LOG_FILE = os.path.join(REPO_PATH, "error_log.txt")
 TIMEZONE = pytz.timezone("US/Eastern")
+
+# Logging Setup
+logging.basicConfig(
+    filename=LOG_FILE,
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s",
+)
+
+# Error Logging
+error_logger = logging.getLogger("error_logger")
+error_logger.addHandler(logging.FileHandler(ERROR_LOG_FILE))
 
 def select_commit_times(working_hours, num_commits):
     """Generate random commit times for the day."""
@@ -65,36 +79,57 @@ def update_counter():
 
 def make_commit(repo, counter_before, counter_after):
     """Commit changes to the repository."""
-    repo.git.add(COUNTER_FILE)
-    commit_message = f"Updated counter from {counter_before} to {counter_after}"
-    repo.git.commit(m=commit_message)
+    try:
+        repo.git.add(COUNTER_FILE, LOG_FILE, ERROR_LOG_FILE)
+        commit_message = f"Updated counter from {counter_before} to {counter_after}"
+        repo.git.commit(m=commit_message)
+        return commit_message
+    except Exception as e:
+        error_logger.error(f"Commit failed: {e}")
+        raise
+
+def push_changes(repo):
+    """Push committed changes to the remote repository."""
+    try:
+        repo.git.push()
+    except Exception as e:
+        error_logger.error(f"Push failed: {e}")
+        raise
 
 def main():
     """Main script logic."""
-    repo = Repo(REPO_PATH)
+    try:
+        repo = Repo(REPO_PATH)
 
-    # Determine if we're setting up the day or executing a commit
-    now = datetime.now(TIMEZONE)
-    commit_times = load_commit_times()
+        # Determine if we're setting up the day or executing a commit
+        now = datetime.now(TIMEZONE)
+        commit_times = load_commit_times()
 
-    if not commit_times:
-        # Setup for the day
-        print("Setting up commit schedule for the day...")
-        working_hours = ["09:00", "19:00"] if now.weekday() < 6 else ["11:00", "16:00"]
-        num_commits = 1 if now.weekday() == 6 else random.randint(1, 10)
-        commit_times = select_commit_times(working_hours, num_commits)
-        save_commit_times(commit_times)
-        print(f"Commit times for the day: {commit_times}")
-    else:
-        # Check if it's time to commit
-        next_commit_time = datetime.fromisoformat(commit_times[0]).astimezone(TIMEZONE)
-        if now >= next_commit_time:
-            print(f"Committing at {now}...")
-            counter_before, counter_after = update_counter()
-            make_commit(repo, counter_before, counter_after)
-            commit_times.pop(0)  # Remove the executed commit time
+        if not commit_times:
+            # Setup for the day
+            working_hours = ["09:00", "19:00"] if now.weekday() < 6 else ["11:00", "16:00"]
+            num_commits = 1 if now.weekday() == 6 else random.randint(1, 10)
+            commit_times = select_commit_times(working_hours, num_commits)
             save_commit_times(commit_times)
-            print(f"Remaining commit times: {commit_times}")
+            logging.info(f"Commit times for the day: {commit_times}")
+        else:
+            # Check if it's time to commit
+            next_commit_time = datetime.fromisoformat(commit_times[0]).astimezone(TIMEZONE)
+            if now >= next_commit_time:
+                counter_before, counter_after = update_counter()
+                commit_message = make_commit(repo, counter_before, counter_after)
+                push_changes(repo)
+
+                # Log the commit
+                logging.info(
+                    f"Commit executed at {now}: {commit_message} (Remaining commit times: {commit_times[1:]})"
+                )
+
+                # Remove the executed time and save
+                commit_times.pop(0)
+                save_commit_times(commit_times)
+    except Exception as e:
+        error_logger.error(f"Script error: {e}")
 
 if __name__ == "__main__":
     main()
