@@ -33,6 +33,7 @@ logging.basicConfig(
 error_logger = logging.getLogger("error_logger")
 error_logger.addHandler(logging.FileHandler(ERROR_LOG_FILE))
 
+
 def select_commit_times(working_hours, num_commits):
     """Generate random commit times for the day."""
     start, end = working_hours
@@ -48,10 +49,12 @@ def select_commit_times(working_hours, num_commits):
 
     return sorted(commit_times)
 
+
 def save_commit_times(commit_times):
     """Save commit times to a JSON file."""
     with open(COMMIT_TIMES_FILE, "w") as file:
         json.dump(commit_times, file)
+
 
 def load_commit_times():
     """Load commit times from the JSON file."""
@@ -59,6 +62,7 @@ def load_commit_times():
         with open(COMMIT_TIMES_FILE, "r") as file:
             return json.load(file)
     return []
+
 
 def update_counter():
     """Update the counter file."""
@@ -77,6 +81,7 @@ def update_counter():
 
     return counter, new_counter
 
+
 def make_commit(repo, counter_before, counter_after):
     """Commit changes to the repository."""
     try:
@@ -88,6 +93,7 @@ def make_commit(repo, counter_before, counter_after):
         error_logger.error(f"Commit failed: {e}")
         raise
 
+
 def push_changes(repo):
     """Push committed changes to the remote repository."""
     try:
@@ -95,6 +101,7 @@ def push_changes(repo):
     except Exception as e:
         error_logger.error(f"Push failed: {e}")
         raise
+
 
 def main():
     """Main script logic."""
@@ -111,11 +118,15 @@ def main():
             num_commits = 1 if now.weekday() == 6 else random.randint(1, 10)
             commit_times = select_commit_times(working_hours, num_commits)
             save_commit_times(commit_times)
+            print(f"Commit times for the day have been set:")
+            for ct in commit_times:
+                print(f"- {datetime.fromisoformat(ct).strftime('%Y-%m-%d %H:%M:%S %Z')}")
             logging.info(f"Commit times for the day: {commit_times}")
         else:
             # Check if it's time to commit
             next_commit_time = datetime.fromisoformat(commit_times[0]).astimezone(TIMEZONE)
             if now >= next_commit_time:
+                print(f"Making a commit at {now.strftime('%Y-%m-%d %H:%M:%S %Z')}...")
                 counter_before, counter_after = update_counter()
                 commit_message = make_commit(repo, counter_before, counter_after)
                 push_changes(repo)
@@ -124,12 +135,16 @@ def main():
                 logging.info(
                     f"Commit executed at {now}: {commit_message} (Remaining commit times: {commit_times[1:]})"
                 )
+                print(f"Commit made: {commit_message}")
 
                 # Remove the executed time and save
                 commit_times.pop(0)
                 save_commit_times(commit_times)
+
     except Exception as e:
         error_logger.error(f"Script error: {e}")
+        print(f"Error occurred: {e}")
+
 
 if __name__ == "__main__":
     main()
