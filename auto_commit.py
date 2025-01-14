@@ -5,14 +5,21 @@ from datetime import datetime, timedelta
 from git import Repo
 import pytz
 import logging
-import json
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get the repository path from the .env file
+REPO_PATH = os.getenv("REPO_PATH")
+if not REPO_PATH:
+    raise ValueError("REPO_PATH not set in .env file")
 
 # Constants
-REPO_PATH = "/path/to/your/repo"  # Change this to your repository path
-COUNTER_FILE = "counter.txt"
-LOG_FILE = "commit_log.txt"
-ERROR_LOG_FILE = "error_log.txt"
-CONFIG_FILE = "config.json"
+COUNTER_FILE = os.path.join(REPO_PATH, "counter.txt")
+LOG_FILE = os.path.join(REPO_PATH, "commit_log.txt")
+ERROR_LOG_FILE = os.path.join(REPO_PATH, "error_log.txt")
+CONFIG_FILE = os.path.join(REPO_PATH, "config.json")
 
 # Timezone Configuration
 ET = pytz.timezone("US/Eastern")
@@ -28,6 +35,7 @@ logging.basicConfig(
 error_logger = logging.getLogger("error_logger")
 error_logger.addHandler(logging.FileHandler(ERROR_LOG_FILE))
 
+
 def load_config():
     try:
         with open(CONFIG_FILE, "r") as file:
@@ -35,6 +43,7 @@ def load_config():
     except Exception as e:
         error_logger.error(f"Error loading config: {e}")
         raise
+
 
 def get_commit_times(working_hours, num_commits, is_sunday):
     start, end = working_hours
@@ -52,10 +61,12 @@ def get_commit_times(working_hours, num_commits, is_sunday):
 
     return commit_times
 
+
 def random_time_between(start, end):
     delta = end - start
     random_seconds = random.randint(0, int(delta.total_seconds()))
     return start + timedelta(seconds=random_seconds)
+
 
 def update_counter():
     if not os.path.exists(COUNTER_FILE):
@@ -73,6 +84,7 @@ def update_counter():
 
     return counter, new_counter
 
+
 def make_commit(repo, counter_before, counter_after):
     try:
         repo.git.add(COUNTER_FILE)
@@ -83,12 +95,14 @@ def make_commit(repo, counter_before, counter_after):
         error_logger.error(f"Commit failed: {e}")
         raise
 
+
 def push_changes(repo):
     try:
         repo.git.push()
     except Exception as e:
         error_logger.error(f"Push failed: {e}")
         raise
+
 
 def main():
     try:
@@ -132,6 +146,7 @@ def main():
 
     except Exception as e:
         error_logger.error(f"Script error: {e}")
+
 
 if __name__ == "__main__":
     main()
