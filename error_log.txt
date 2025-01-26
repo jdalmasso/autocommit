@@ -22,3 +22,21 @@ Push failed: Cmd('git') failed due to: exit code(128)
 Script error: Cmd('git') failed due to: exit code(128)
   cmdline: git push
   stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Recv failure: Operation timed out'
+Push failed: Cmd('git') failed due to: exit code(1)
+  cmdline: git push
+  stderr: 'To https://github.com/jdalmasso/autocommit.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'https://github.com/jdalmasso/autocommit.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.'
+Script error: Cmd('git') failed due to: exit code(1)
+  cmdline: git push
+  stderr: 'To https://github.com/jdalmasso/autocommit.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'https://github.com/jdalmasso/autocommit.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.'
