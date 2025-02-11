@@ -118,3 +118,15 @@ Push failed: Cmd('git') failed due to: exit code(128)
 Script error: Cmd('git') failed due to: exit code(128)
   cmdline: git push
   stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Could not resolve host: github.com'
+Push failed: Cmd('git') failed due to: exit code(1)
+  cmdline: git push
+  stderr: 'error: RPC failed; curl 56 Recv failure: Connection reset by peer
+send-pack: unexpected disconnect while reading sideband packet
+fatal: the remote end hung up unexpectedly
+Everything up-to-date'
+Script error: Cmd('git') failed due to: exit code(1)
+  cmdline: git push
+  stderr: 'error: RPC failed; curl 56 Recv failure: Connection reset by peer
+send-pack: unexpected disconnect while reading sideband packet
+fatal: the remote end hung up unexpectedly
+Everything up-to-date'
