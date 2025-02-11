@@ -130,3 +130,9 @@ Script error: Cmd('git') failed due to: exit code(1)
 send-pack: unexpected disconnect while reading sideband packet
 fatal: the remote end hung up unexpectedly
 Everything up-to-date'
+Push failed: Cmd('git') failed due to: exit code(128)
+  cmdline: git push
+  stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Failed to connect to github.com port 443 after 1434836 ms: Timeout was reached'
+Script error: Cmd('git') failed due to: exit code(128)
+  cmdline: git push
+  stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Failed to connect to github.com port 443 after 1434836 ms: Timeout was reached'
