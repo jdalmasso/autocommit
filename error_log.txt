@@ -208,3 +208,9 @@ Script error: Cmd('git') failed due to: exit code(1)
   stderr: 'To https://github.com/jdalmasso/autocommit.git
  ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at a3c145a70973803bb756aa3b5db7d999ce8f49c8 but expected 270354c3651fbf0b816f5c0d35075c0015630f98)
 error: failed to push some refs to 'https://github.com/jdalmasso/autocommit.git''
+Push failed: Cmd('git') failed due to: exit code(128)
+  cmdline: git push
+  stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Recv failure: Connection reset by peer'
+Script error: Cmd('git') failed due to: exit code(128)
+  cmdline: git push
+  stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Recv failure: Connection reset by peer'
