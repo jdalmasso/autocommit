@@ -198,3 +198,13 @@ Script error: Cmd('git') failed due to: exit code(1)
   stderr: 'To https://github.com/jdalmasso/autocommit.git
  ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at 623e5680fd3b1abb78d4d028839d08e033e313e1 but expected 15783491da2d0943aaa48f41ebc0d746ddb156a4)
 error: failed to push some refs to 'https://github.com/jdalmasso/autocommit.git''
+Push failed: Cmd('git') failed due to: exit code(1)
+  cmdline: git push
+  stderr: 'To https://github.com/jdalmasso/autocommit.git
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at a3c145a70973803bb756aa3b5db7d999ce8f49c8 but expected 270354c3651fbf0b816f5c0d35075c0015630f98)
+error: failed to push some refs to 'https://github.com/jdalmasso/autocommit.git''
+Script error: Cmd('git') failed due to: exit code(1)
+  cmdline: git push
+  stderr: 'To https://github.com/jdalmasso/autocommit.git
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at a3c145a70973803bb756aa3b5db7d999ce8f49c8 but expected 270354c3651fbf0b816f5c0d35075c0015630f98)
+error: failed to push some refs to 'https://github.com/jdalmasso/autocommit.git''
