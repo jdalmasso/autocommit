@@ -170,3 +170,21 @@ hint: Updates were rejected because the tip of your current branch is behind
 hint: its remote counterpart. If you want to integrate the remote changes,
 hint: use 'git pull' before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.'
+Commit failed: Cmd('git') failed due to: exit code(128)
+  cmdline: git add /Users/jacopodalmasso/Desktop/Python/Github/autocommit/counter.txt /Users/jacopodalmasso/Desktop/Python/Github/autocommit/commit_log.txt /Users/jacopodalmasso/Desktop/Python/Github/autocommit/error_log.txt
+  stderr: 'fatal: Unable to create '/Users/jacopodalmasso/Desktop/Python/Github/autocommit/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.'
+Script error: Cmd('git') failed due to: exit code(128)
+  cmdline: git add /Users/jacopodalmasso/Desktop/Python/Github/autocommit/counter.txt /Users/jacopodalmasso/Desktop/Python/Github/autocommit/commit_log.txt /Users/jacopodalmasso/Desktop/Python/Github/autocommit/error_log.txt
+  stderr: 'fatal: Unable to create '/Users/jacopodalmasso/Desktop/Python/Github/autocommit/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.'

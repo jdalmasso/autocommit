@@ -1137,3 +1137,22 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.'
 2025-02-12 21:53:02,477 - Commit executed at 2025-02-12 21:53:01.378629-05:00: Updated counter from 40770 to 40813 (Remaining commit times: [])
 2025-02-12 21:54:01,204 - Commit times for the day: ['2025-02-12T11:40:41-05:00', '2025-02-12T11:51:19-05:00', '2025-02-12T13:27:17-05:00', '2025-02-12T13:44:04-05:00', '2025-02-12T16:55:14-05:00', '2025-02-12T17:13:36-05:00', '2025-02-12T17:28:10-05:00']
 2025-02-12 21:55:01,878 - Commit executed at 2025-02-12 21:55:00.791384-05:00: Updated counter from 40813 to 40848 (Remaining commit times: ['2025-02-12T11:51:19-05:00', '2025-02-12T13:27:17-05:00', '2025-02-12T13:44:04-05:00', '2025-02-12T16:55:14-05:00', '2025-02-12T17:13:36-05:00', '2025-02-12T17:28:10-05:00'])
+2025-02-12 21:56:02,813 - Commit executed at 2025-02-12 21:56:01.583188-05:00: Updated counter from 40848 to 40879 (Remaining commit times: ['2025-02-12T13:27:17-05:00', '2025-02-12T13:44:04-05:00', '2025-02-12T16:55:14-05:00', '2025-02-12T17:13:36-05:00', '2025-02-12T17:28:10-05:00'])
+2025-02-13 08:12:57,992 - Commit failed: Cmd('git') failed due to: exit code(128)
+  cmdline: git add /Users/jacopodalmasso/Desktop/Python/Github/autocommit/counter.txt /Users/jacopodalmasso/Desktop/Python/Github/autocommit/commit_log.txt /Users/jacopodalmasso/Desktop/Python/Github/autocommit/error_log.txt
+  stderr: 'fatal: Unable to create '/Users/jacopodalmasso/Desktop/Python/Github/autocommit/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.'
+2025-02-13 08:12:58,010 - Script error: Cmd('git') failed due to: exit code(128)
+  cmdline: git add /Users/jacopodalmasso/Desktop/Python/Github/autocommit/counter.txt /Users/jacopodalmasso/Desktop/Python/Github/autocommit/commit_log.txt /Users/jacopodalmasso/Desktop/Python/Github/autocommit/error_log.txt
+  stderr: 'fatal: Unable to create '/Users/jacopodalmasso/Desktop/Python/Github/autocommit/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.'
