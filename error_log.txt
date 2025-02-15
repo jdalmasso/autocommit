@@ -238,3 +238,9 @@ Script error: Cmd('git') failed due to: exit code(1)
 send-pack: unexpected disconnect while reading sideband packet
 fatal: the remote end hung up unexpectedly
 Everything up-to-date'
+Push failed: Cmd('git') failed due to: exit code(128)
+  cmdline: git push
+  stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Could not resolve host: github.com'
+Script error: Cmd('git') failed due to: exit code(128)
+  cmdline: git push
+  stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Could not resolve host: github.com'
