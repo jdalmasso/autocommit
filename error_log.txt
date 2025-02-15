@@ -226,3 +226,15 @@ Script error: Cmd('git') failed due to: exit code(1)
 send-pack: unexpected disconnect while reading sideband packet
 fatal: the remote end hung up unexpectedly
 Everything up-to-date'
+Push failed: Cmd('git') failed due to: exit code(1)
+  cmdline: git push
+  stderr: 'error: RPC failed; curl 56 Recv failure: Connection reset by peer
+send-pack: unexpected disconnect while reading sideband packet
+fatal: the remote end hung up unexpectedly
+Everything up-to-date'
+Script error: Cmd('git') failed due to: exit code(1)
+  cmdline: git push
+  stderr: 'error: RPC failed; curl 56 Recv failure: Connection reset by peer
+send-pack: unexpected disconnect while reading sideband packet
+fatal: the remote end hung up unexpectedly
+Everything up-to-date'
