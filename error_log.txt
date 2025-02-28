@@ -274,3 +274,9 @@ Push failed: Cmd('git') failed due to: exit code(128)
 Script error: Cmd('git') failed due to: exit code(128)
   cmdline: git push
   stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Failed to connect to github.com port 443 after 3912591 ms: Timeout was reached'
+Push failed: Cmd('git') failed due to: exit code(128)
+  cmdline: git push
+  stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Recv failure: Connection reset by peer'
+Script error: Cmd('git') failed due to: exit code(128)
+  cmdline: git push
+  stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': Recv failure: Connection reset by peer'
