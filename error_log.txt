@@ -286,3 +286,13 @@ Push failed: Cmd('git') failed due to: exit code(128)
 Script error: Cmd('git') failed due to: exit code(128)
   cmdline: git push
   stderr: 'fatal: unable to access 'https://github.com/jdalmasso/autocommit.git/': SSL connection timeout'
+Push failed: Cmd('git') failed due to: exit code(1)
+  cmdline: git push
+  stderr: 'To https://github.com/jdalmasso/autocommit.git
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at e31c5a927cdea76c16098b9211f1853ff53e035b but expected f665749023644ce95ee9459c3e486532bdad6e65)
+error: failed to push some refs to 'https://github.com/jdalmasso/autocommit.git''
+Script error: Cmd('git') failed due to: exit code(1)
+  cmdline: git push
+  stderr: 'To https://github.com/jdalmasso/autocommit.git
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at e31c5a927cdea76c16098b9211f1853ff53e035b but expected f665749023644ce95ee9459c3e486532bdad6e65)
+error: failed to push some refs to 'https://github.com/jdalmasso/autocommit.git''
